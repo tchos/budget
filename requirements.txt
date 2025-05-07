@@ -1,7 +1,7 @@
 asgiref==3.6.0
 beautifulsoup4==4.12.2
 cffi==1.16.0
-cryptography==42.0.5
+cryptography==44.0.1
 Django==4.2
 django-bootstrap==0.2.4
 django-bootstrap5==23.3
