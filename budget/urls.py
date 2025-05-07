@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 import inspect
+from .views import RecetteView
 
 """
 urlpatterns = [
@@ -10,8 +11,13 @@ urlpatterns = [
 ]
 """
 
+app_name = 'budget'
+
 # Initialisation de la variable path qui contiendra la liste des path
-urlpatterns = [path('', views.index, name='index'),]
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('recettes/', RecetteView.as_view(), name='recette_list'),
+]
 
 # Inspecter les fonctions définies dans views
 for name, func in inspect.getmembers(views, inspect.isfunction):

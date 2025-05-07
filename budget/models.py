@@ -2,6 +2,9 @@ from django.db import models
 import datetime, uuid
 from datetime import date
 
+from django.core.validators import ValidationError
+
+
 # Create your models here.
 class ExerciceBudgetaire(models.Model):
     STATUS_CHOICES = [
@@ -58,6 +61,20 @@ class Depense(models.Model):
     montantAutorise = models.IntegerField()
     montantRealise = models.IntegerField()
     exercice = models.ForeignKey('ExerciceBudgetaire', on_delete=models.CASCADE)
+
+    """
+    Validation conditionnelle qui affichera une erreur dans le formulaire.
+    Pour celà on use la fonction def clean soit dans le models.py soit dans le fichier forms.py
+    """
+    def clean(self):
+        super().clean()
+        if (self.montantRealise > self.montantAutorise):
+            raise ValidationError("Le montant réalisé ne peut dépasser le montant autorisé !")
+
+    # Avec cette methode l'erreur s'affichera sous le champs concerné
+    def clean_montantRealise(self):
+        if (self.nature == "fonctionnement" and self.montantRealise > 100):
+            raise ValidationError("Les dépenses de fonctionnement ne doivent pas excéder 100")
 
     def __str__(self):
         return f"{self.chapitre} - {self.montantPrevu} FCFA"
