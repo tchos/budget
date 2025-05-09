@@ -371,7 +371,7 @@ SQLAlchemy @ file:///croot/sqlalchemy_1736565039440/work
 sqlparse==0.5.3
 stack-data @ file:///opt/conda/conda-bld/stack_data_1646927590127/work
 statsmodels @ file:///croot/statsmodels_1676643798791/work
-streamlit==1.34.0
+streamlit==1.37.0
 streamlit-option-menu==0.3.13
 sympy @ file:///croot/sympy_1668202399572/work
 tables @ file:///croot/pytables_1673967643433/work
