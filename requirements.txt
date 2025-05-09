@@ -175,7 +175,7 @@ jupyterlab_darkside_theme==0.1.2
 jupyterlab_server @ file:///croot/jupyterlab_server_1725865349919/work
 jupyterthemes==0.20.0
 kaleido==0.2.1
-keras==3.3.3
+keras==3.9.0
 keyring @ file:///home/builder/ci_310/keyring_1640884834928/work
 kiwisolver @ file:///croot/kiwisolver_1672387140495/work
 lazy-object-proxy @ file:///home/builder/ci_310/lazy-object-proxy_1640791307593/work
