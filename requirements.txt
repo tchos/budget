@@ -210,7 +210,7 @@ msgpack @ file:///opt/conda/conda-bld/msgpack-python_1652362659880/work
 multipledispatch @ file:///home/builder/ci_310/multipledispatch_1640791758119/work
 munkres==1.1.4
 mypy-extensions==0.4.3
-mysql-connector-python==8.4.0
+mysql-connector-python==9.1.0
 namex==0.0.8
 navigator-updater==0.3.0
 nb_conda_kernels @ file:///croot/nb_conda_kernels_1730822291550/work
