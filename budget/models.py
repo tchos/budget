@@ -7,14 +7,27 @@ from django.core.validators import ValidationError
 
 # Create your models here.
 class ExerciceBudgetaire(models.Model):
+
+    # Validator optionnel (si tu veux renforcer la validation personnalisée)
+    def validate_annee(value):
+        if not isinstance(value, int):
+            raise ValidationError("L'année doit être un nombre entier.")
+
     STATUS_CHOICES = [
         ("provisoire", "Provisoire"),
         ("definitif", "Définitif"),
         ("clos", "Clos")
     ]
 
-    annee = models.IntegerField()
+    annee = models.IntegerField(unique=True, verbose_name="Année budgétaire", validators=[validate_annee])
     statut = models.CharField(max_length=50, choices=STATUS_CHOICES)
+
+    # Validator pou dire qu'une année budgétaire doit être unique
+    def clean(self):
+        super().clean()
+        # Vérifie si une autre instance avec la même année existe
+        if ExerciceBudgetaire.objects.filter(annee=self.annee).exclude(pk=self.pk).exists():
+            raise ValidationError({'annee': "Cette année budgétaire existe déjà dans la base de données."})
 
     def __str__(self):
         return f"{self.annee}"
@@ -35,7 +48,8 @@ class Recette(models.Model):
     montantPrevu = models.IntegerField()
     montantAutorise = models.IntegerField()
     montantRealise = models.IntegerField()
-    exercice = models.ForeignKey('ExerciceBudgetaire', on_delete=models.CASCADE)
+    # Avec related_name='recettes' on pourra accéder à la liste des recettes d'un execice
+    exercice = models.ForeignKey('ExerciceBudgetaire', on_delete=models.CASCADE, related_name='recettes')
 
     def __str__(self):
         return f"{self.nom} + {self.montantPrevu} FCFA"
@@ -60,7 +74,8 @@ class Depense(models.Model):
     montantPrevu = models.IntegerField()
     montantAutorise = models.IntegerField()
     montantRealise = models.IntegerField()
-    exercice = models.ForeignKey('ExerciceBudgetaire', on_delete=models.CASCADE)
+    # Avec related_name='depenses' on pourra accéder à la liste des dépenses d'un execice
+    exercice = models.ForeignKey('ExerciceBudgetaire', on_delete=models.CASCADE, related_name='depenses')
 
     """
     Validation conditionnelle qui affichera une erreur dans le formulaire.
@@ -71,10 +86,16 @@ class Depense(models.Model):
         if (self.montantRealise > self.montantAutorise):
             raise ValidationError("Le montant réalisé ne peut dépasser le montant autorisé !")
 
-    # Avec cette methode l'erreur s'affichera sous le champs concerné
+        if (self.nature == "fonctionnement" and self.montantRealise > 100):
+            # Avec cette methode l'erreur s'affichera au dessus du champs concerné
+            raise ValidationError({"montantRealise": ("Les dépenses de fonctionnement ne doivent pas excéder 100")})
+
+    """
+    # Avec cette methode l'erreur s'affichera au dessus du champs concerné
     def clean_montantRealise(self):
         if (self.nature == "fonctionnement" and self.montantRealise > 100):
             raise ValidationError("Les dépenses de fonctionnement ne doivent pas excéder 100")
+    """
 
     def __str__(self):
         return f"{self.chapitre} - {self.montantPrevu} FCFA"

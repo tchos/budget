@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}EXERCICE{% endblock %}
+
+{% block content %}
+    <div class="row my-4 d-flex justify-content-between">
+        <div class="col-2">
+            <span class="badge bg-success text-white fw-bolder h3">
+                <i class="bi bi-list-columns"></i> Liste des recettes de l'exercice {{ exercice.annee }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Imputation</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">montantRealise</th>
+                    <th scope="col">montantAutorise</th>
+                    <th scope="col">montantPrevu</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for recette in exercice.recettes.all %}
+                    <tr>
+                        <th class="text-center">{{ recette.imputation }}</th>
+                        <td>{{ recette.nom }}</td>
+                        <td class="text-center">{{ recette.categorie }}</td>
+                        <td class="text-center">{{ recette.montantRealise }}M FCFA</td>
+                        <td class="text-center">{{ recette.montantAutorise }}M FCFA</td>
+                        <td class="text-center">{{ recette.montantPrevu }}M FCFA</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# Les dépenses de l'exercice #}
+    <div class="row my-4 d-flex justify-content-between">
+        <div class="col-2">
+            <span class="badge bg-danger text-white fw-bolder h3">
+                <i class="bi bi-list-columns"></i> Liste des dépenses de l'exercice {{ exercice.annee }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col">chapitre</th>
+                    <th scope="col">nature</th>
+                    <th scope="col">paragraphe</th>
+                    <th scope="col">montantRealise</th>
+                    <th scope="col">montantAutorise</th>
+                    <th scope="col">montantPrevu</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for depense in exercice.depenses.all %}
+                    <tr>
+                        <th class="text-center">{{ depense.chapitre }}</th>
+                        <td>{{ depense.nature }}</td>
+                        <td class="text-center">{{ depense.paragraphe }}</td>
+                        <td class="text-center">{{ depense.montantRealise }}M FCFA</td>
+                        <td class="text-center">{{ depense.montantAutorise }}M FCFA</td>
+                        <td class="text-center">{{ depense.montantPrevu }}M FCFA</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

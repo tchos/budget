@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}RECETTES{% endblock %}
+
+{% block content %}
+    <div class="row mb-4"><h4 class="text-center">Gestion des recettes de l'Etat du Cameroun.</h4></div>
+    <div class="row mb-4 d-flex justify-content-between">
+        <div class="col-2">
+            <span class="badge bg-success text-white fw-bolder">
+                <i class="bi bi-list-columns"></i> Liste des recettes
+            </span>
+        </div>
+        <div class="col-2">
+            <span class="badge text-bg-primary">
+                <i class="bi bi-bookmarks-fill"></i> Total Réalisé: {{ totalRealise }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Imputation</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">montantRealise</th>
+                    <th scope="col">montantAutorise</th>
+                    <th scope="col">montantPrevu</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for recette in recettes %}
+                    <tr>
+                        <th class="text-center">{{ recette.imputation }}</th>
+                        <td>{{ recette.nom }}</td>
+                        <td class="text-center">{{ recette.categorie }}</td>
+                        <td class="text-center">{{ recette.montantRealise }}</td>
+                        <td class="text-center">{{ recette.montantAutorise }}</td>
+                        <td class="text-center">{{ recette.montantPrevu }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

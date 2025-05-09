@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}LISTE EXERCICE{% endblock %}
+
+{% block content %}
+    <div class="row mb-4"><h4 class="text-center">Gestion du budget de l'Etat du Cameroun - Liste des exercices budgétaires</h4></div>
+    <div class="row mb-4 d-flex justify-content-between">
+        <div class="col-2">
+            <span class="badge bg-success text-white fw-bolder">
+                <i class="bi bi-list-columns"></i> Liste des exercices budgétaires
+            </span>
+        </div>
+        <div class="col-2">
+            <span class="badge text-bg-primary">
+                <i class="bi bi-bookmarks-fill"></i> Nbre total exercice: {{ total_exercice }}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Année budgétaire</th>
+                    <th scope="col">Statut</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for exercice in exercices %}
+                    <tr>
+                        <th class="text-center">{{ exercice.annee }}</th>
+                        <td>{{ exercice.statut }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<ul class="nav justify-content-center bg-primary p-2 mb-5">
+    <li class="nav-item">
+        <a class="nav-link active text-white fw-bolder" aria-current="page" href="{% url 'budget:index' %}">Accueil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active text-white fw-bolder" href="{% url 'budget:recette_list' %}">Recettes</a>
+    </li>
+    <li class="nav-item active text-white fw-bolder">
+        <a class="nav-link active text-white fw-bolder" href="{% url 'budget:depense' %}">Dépenses</a>
+    </li>
+    <li class="nav-item active text-white fw-bolder">
+        <a class="nav-link active text-white fw-bolder" href="{% url 'budget:detail_exercice' 2024 %}">Exercice</a>
+    </li>
+    <li class="nav-item active text-white fw-bolder">
+        <a class="nav-link active text-white fw-bolder" href="{% url 'budget:new_exercice' %}">Créer Exercice</a>
+    </li>
+</ul>
