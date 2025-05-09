@@ -397,7 +397,7 @@ toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 tomli @ file:///opt/conda/conda-bld/tomli_1657175507142/work
 tomlkit @ file:///tmp/abs_56_0lnnq5x/croots/recipe/tomlkit_1658946880479/work
 toolz @ file:///croot/toolz_1667464077321/work
-torch==1.12.1
+torch==2.7.0
 tornado @ file:///croot/tornado_1733960490606/work
 tqdm @ file:///opt/conda/conda-bld/tqdm_1664392687731/work
 traitlets @ file:///croot/traitlets_1671143879854/work
