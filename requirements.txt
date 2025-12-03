@@ -92,7 +92,7 @@ defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 diff-match-patch @ file:///Users/ktietz/demo/mc3/conda-bld/diff-match-patch_1630511840874/work
 dill @ file:///croot/dill_1667919592856/work
 distributed @ file:///opt/conda/conda-bld/distributed_1647271944416/work
-Django==5.2.1
+Django==5.2.9
 django-cors-headers==4.7.0
 docstring-to-markdown @ file:///croot/docstring-to-markdown_1673447639232/work
 docutils @ file:///opt/conda/conda-bld/docutils_1657175430858/work
